@@ -11,9 +11,9 @@ weather_api_url = 'http://api.openweathermap.org/data/2.5/weather'
 def index():
     return render_template('look.html')
 
-@app.route('/weather/<city>', methods=['GET'])
-def get_weather(city):
-    '''city = request.form['city']'''
+@app.route('/weather', methods=['POST'])
+def get_weather():
+    city = request.form.get('city')
     params = {'q': city, 'appid': api_key, 'units': 'metric'}
 
     response = requests.get(weather_api_url, params=params)
